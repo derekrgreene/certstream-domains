@@ -27,7 +27,6 @@ docker-compose up --build
 ## 📂 Output Format
 
 Results are saved as JSONL in the `domain_data` directory with the following format:
-⚠️ Many of the domains collected will be prepended with an '*' (wildcard) as domains are collected from Certificate Transparency Logs 
 
 ```json
 "*.leakednews20.pages.dev"
@@ -49,6 +48,8 @@ Results are saved as JSONL in the `domain_data` directory with the following for
 "elitedentalmy.com"
 "3a5h6.com"
 ```
+
+⚠️ Many of the domains collected will be prepended with an '*' (wildcard) as domains are collected from Certificate Transparency Logs 
 
 ## 📝 License
 
