@@ -1,0 +1,31 @@
+services:
+  certstream:
+    image: 0rickyy0/certstream-server-go:latest
+    volumes:
+      - ./config.yaml:/app/config.yaml
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8080"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - certstream-network
+
+  certstream-domains:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./domains_data:/app/domains_data
+    depends_on:
+      certstream:
+        condition: service_healthy
+    networks:
+      - certstream-network
+
+networks:
+  certstream-network:
+    driver: bridge
